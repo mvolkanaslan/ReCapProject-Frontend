@@ -9,6 +9,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NaviComponent } from './components/navi/navi.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     CustomerComponent,
     RentalComponent,
     BrandComponent,
+    NaviComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

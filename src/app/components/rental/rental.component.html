@@ -1,1 +1,23 @@
-<p>rental works!</p>
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th colspan="5">RENTALS</th>
+    </tr>
+    <tr>
+      <th>Car</th>
+      <th>Customer</th>
+      <th>Company</th>
+      <th>Rent Date</th>
+      <th>Return Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rental of rentals">
+      <td>{{ rental.carName }}</td>
+      <td>{{ rental.customerName }}</td>
+      <td>{{ rental.companyName }}</td>
+      <td>{{ rental.rentDate }}</td>
+      <td>{{ rental.returnDate }}</td>
+    </tr>
+  </tbody>
+</table>
