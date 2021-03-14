@@ -14,4 +14,4 @@ export class CustomerService {
     return this.httpClient.get<ListResponseModel<Customer>>(this.apiURL);
   }
 }
-//commit
+//commit degistir
