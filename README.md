@@ -1,5 +1,8 @@
 # ReCapProjectFrontend
-![](https://github.com/mvolkanaslan/ReCapProject-Frontend/blob/master/src/assets/ReCapProject-Frontend.JPG)
+![](https://github.com/mvolkanaslan/ReCapProject-Frontend/blob/master/src/assets/r1.JPG)
+![](https://github.com/mvolkanaslan/ReCapProject-Frontend/blob/master/src/assets/r2.JPG)
+![](https://github.com/mvolkanaslan/ReCapProject-Frontend/blob/master/src/assets/r3.JPG)
+![](https://github.com/mvolkanaslan/ReCapProject-Frontend/blob/master/src/assets/r4.JPG)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
