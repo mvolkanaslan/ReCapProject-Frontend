@@ -16,8 +16,14 @@
       <td>{{ rental.carName }}</td>
       <td>{{ rental.customerName }}</td>
       <td>{{ rental.companyName }}</td>
-      <td>{{ rental.rentDate }}</td>
-      <td>{{ rental.returnDate }}</td>
+      <td>{{ rental.rentDate.toString().split("T")[0] }}</td>
+      <td>
+        {{
+          rental.returnDate == null
+            ? null
+            : rental.returnDate.toString().split("T")[0]
+        }}
+      </td>
     </tr>
   </tbody>
 </table>

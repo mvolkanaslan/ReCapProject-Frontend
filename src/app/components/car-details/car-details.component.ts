@@ -13,6 +13,7 @@ import { CarService } from 'src/app/services/car.service';
 export class CarDetailsComponent implements OnInit {
   carDetails: Car;
   carImages: CarImage[];
+  activeClass: '';
   constructor(
     private carService: CarService,
     private carImageService: CarImageService,
@@ -28,7 +29,8 @@ export class CarDetailsComponent implements OnInit {
   }
   getCarDetails(carId: number) {
     this.carService.getCarById(carId).subscribe((response) => {
-      this.carDetails = response;
+      this.carDetails = response.data[0];
+      console.log(response);
     });
     this.carImageService.getCarImages(carId).subscribe((response) => {
       this.carImages = response.data;

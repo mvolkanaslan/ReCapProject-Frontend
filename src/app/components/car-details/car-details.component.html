@@ -1,6 +1,63 @@
-<h3 *ngFor="let carImage of carImages">{{ carImage.imagePath }}</h3>
-<img
-  *ngFor="let carImage of carImages"
-  src="{{ 'https://localhost:44375/' + carImage.imagePath }}"
-  alt=""
-/>
+<div class="card border-primary">
+  <div class="card-header">
+    <h4>{{ carDetails.carName }}</h4>
+  </div>
+  <div class="row g-0">
+    <div class="col-md-8">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div
+            class="carousel-item {{ i == 0 ? 'active' : null }}"
+            *ngFor="let carImage of carImages; let i = index"
+          >
+            <img
+              src="{{ 'https://localhost:44375/' + carImage.imagePath }}"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h5>Car Details</h5>
+          </li>
+          <li class="list-group-item">Model : {{ carDetails.carName }}</li>
+          <li class="list-group-item">Brand : {{ carDetails.brandName }}</li>
+          <li class="list-group-item">
+            Model Year : {{ carDetails.modelYear }}
+          </li>
+          <li class="list-group-item">Color : {{ carDetails.colorName }}</li>
+          <li class="list-group-item">
+            Daily Price : {{ carDetails.dailyPrice }} ₺
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
