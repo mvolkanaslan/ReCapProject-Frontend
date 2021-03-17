@@ -1,0 +1,6 @@
+<h3 *ngFor="let carImage of carImages">{{ carImage.imagePath }}</h3>
+<img
+  *ngFor="let carImage of carImages"
+  src="{{ 'https://localhost:44375/' + carImage.imagePath }}"
+  alt=""
+/>
