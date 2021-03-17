@@ -15,7 +15,7 @@
             *ngFor="let carImage of carImages; let i = index"
           >
             <img
-              src="{{ 'https://localhost:44375/' + carImage.imagePath }}"
+              src="{{ BaseUrl + carImage.imagePath }}"
               class="d-block w-100"
               alt="..."
             />

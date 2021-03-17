@@ -4,6 +4,7 @@ import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImages';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-car-details',
@@ -13,12 +14,15 @@ import { CarService } from 'src/app/services/car.service';
 export class CarDetailsComponent implements OnInit {
   carDetails: Car;
   carImages: CarImage[];
-  activeClass: '';
+  BaseUrl: string;
+
   constructor(
     private carService: CarService,
     private carImageService: CarImageService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.BaseUrl = environment.apiBaseUrl;
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -30,7 +34,6 @@ export class CarDetailsComponent implements OnInit {
   getCarDetails(carId: number) {
     this.carService.getCarById(carId).subscribe((response) => {
       this.carDetails = response.data[0];
-      console.log(response);
     });
     this.carImageService.getCarImages(carId).subscribe((response) => {
       this.carImages = response.data;
