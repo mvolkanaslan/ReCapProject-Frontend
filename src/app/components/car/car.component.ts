@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Car } from 'src/app/models/car';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-car',
@@ -12,6 +13,8 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarComponent implements OnInit {
   cars: Car[] = [];
+  baseURL = environment.apiBaseUrl;
+  cardefaultImgPath = environment.cardefaultImgPath;
 
   constructor(
     private carService: CarService,

@@ -1,54 +1,13 @@
-<!-- <table class="table table-striped table-hover">
-  <thead class="table-secondary">
-    <tr>
-      <th colspan="6">CARS</th>
-    </tr>
-    <tr>
-      <th>Car Id</th>
-      <th>Brand</th>
-      <th>Color</th>
-      <th>Model Year</th>
-      <th>Daily Price</th>
-      <th>Car Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let car of cars" routerLink="/cardetails/{{ car.carId }}">
-      <td>{{ car.carId }}</td>
-      <td>{{ car.brandName }}</td>
-      <td>{{ car.colorName }}</td>
-      <td>{{ car.modelYear }}</td>
-      <td>{{ car.dailyPrice }} ₺</td>
-      <td>{{ car.carName }}</td>
-    </tr>
-  </tbody>
-</table> -->
-<!-- <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col" *ngFor="let car of cars">
-    <div class="card">
-      <img
-        src="https://localhost:44375/Upload/Images/CarImages/default.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Model : {{ car.carName }}</p>
-        <p class="card-text">Brand : {{ car.brandName }}</p>
-        <p class="card-text">Model Year : {{ car.modelYear }}</p>
-        <p class="card-text">Color : {{ car.colorName }}</p>
-        <p class="card-text">Daily Price : {{ car.dailyPrice }} ₺</p>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col" *ngFor="let car of cars">
     <div class="card h-100">
       <!-- ! Araclarin default imajlari getirilecek -->
       <img
-        src="https://localhost:44375/Upload/Images/CarImages/default.jpg"
+        src="{{
+          car.imagePath == null
+            ? baseURL + cardefaultImgPath
+            : baseURL + car.imagePath
+        }}"
         class="card-img-top"
         alt="..."
       />

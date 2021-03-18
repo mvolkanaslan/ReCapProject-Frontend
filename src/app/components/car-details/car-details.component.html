@@ -1,4 +1,4 @@
-<div class="card border-primary">
+<div class="card">
   <div class="card-header">
     <h4>{{ carDetails.carName }}</h4>
   </div>
@@ -15,7 +15,7 @@
             *ngFor="let carImage of carImages; let i = index"
           >
             <img
-              src="{{ BaseUrl + carImage.imagePath }}"
+              src="{{ BaseUrl }}{{ carImage.imagePath }}"
               class="d-block w-100"
               alt="..."
             />
