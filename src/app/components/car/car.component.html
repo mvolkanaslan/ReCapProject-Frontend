@@ -1,5 +1,18 @@
+<div class="input-group mb-1">
+  <input
+    [(ngModel)]="filterText"
+    type="text"
+    class="form-control"
+    placeholder="Search by Car Name, Brand and Color"
+    aria-label="Search"
+    aria-describedby="basic-addon1"
+  />
+</div>
+<div *ngIf="filterText" class="alert alert-success">
+  Searched for "{{ filterText }}"
+</div>
 <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col" *ngFor="let car of cars">
+  <div class="col" *ngFor="let car of cars | filterPipe: filterText">
     <div class="card h-100">
       <!-- ! Araclarin default imajlari getirilecek -->
       <img

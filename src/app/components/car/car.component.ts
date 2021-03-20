@@ -15,6 +15,7 @@ export class CarComponent implements OnInit {
   cars: Car[] = [];
   baseURL = environment.apiBaseUrl;
   cardefaultImgPath = environment.cardefaultImgPath;
+  filterText: string = '';
 
   constructor(
     private carService: CarService,

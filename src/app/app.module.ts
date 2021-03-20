@@ -13,6 +13,7 @@ import { BrandComponent } from './components/brand/brand.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FilterComponent } from './components/filter/filter.component';
     NaviComponent,
     CarDetailsComponent,
     FilterComponent,
+    FilterPipePipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
