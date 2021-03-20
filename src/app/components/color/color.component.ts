@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Color } from 'src/app/models/color';
+import { Filters } from 'src/app/models/filters';
 import { ColorService } from 'src/app/services/color.service';
 
 @Component({
@@ -10,8 +12,13 @@ import { ColorService } from 'src/app/services/color.service';
 export class ColorComponent implements OnInit {
   colors: Color[] = [];
   currentColor: Color;
-  allColor: Color;
-  constructor(private colorService: ColorService) {}
+  allColor?: Color;
+  Filters = { brandId: '', colorId: '' };
+  constructor(
+    private colorService: ColorService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getColor();
@@ -21,12 +28,22 @@ export class ColorComponent implements OnInit {
       this.colors = response.data;
     });
   }
-  setCurrentColor(color: Color) {
-    this.currentColor = color;
+  setCurrentColor() {
+    this.currentColor !== undefined
+      ? (Filters.colorId = this.currentColor.id.toString())
+      : (Filters.colorId = '');
   }
-  toggleClass(color: Color) {
-    return color == this.currentColor
-      ? 'list-group-item list-group-item-action list-group-item-primary'
-      : 'list-group-item list-group-item-action';
+  allColorsSelected() {
+    return this.currentColor == undefined ? true : false;
   }
+
+  // setCurrentColor() {
+  //   this.currentColor != null
+  //     ? this.router.navigate(['cars/'], {
+  //         queryParams: { colorId: this.currentColor.id },
+  //         queryParamsHandling: 'merge',
+  //         relativeTo: this.route,
+  //       })
+  //     : this.router.navigate(['/cars']);
+  // }
 }

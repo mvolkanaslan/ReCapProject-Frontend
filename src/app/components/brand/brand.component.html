@@ -1,19 +1,13 @@
-<ul class="list-group mb-1">
-  <li class="list-group-item active">BRANDS</li>
-  <a
-    href="#"
-    routerLink="/cars/"
-    (click)="setCurrentBrand(allBrand)"
-    [class]="toggleClass(allBrand)"
-    >ALL BRANDS</a
-  >
-  <a
-    href="#"
-    *ngFor="let brand of brands"
-    (click)="setCurrentBrand(brand)"
-    routerLink="/cars/brand/{{ brand.id }}"
-    [class]="toggleClass(brand)"
-  >
+<select
+  (change)="setCurrentBrand()"
+  [(ngModel)]="currentBrand"
+  class="form-select mb-1"
+  aria-label="Default select example"
+>
+  <option [selected]="allBrandSelected()" [ngValue]="allBrand">
+    Select a Brand
+  </option>
+  <option *ngFor="let brand of brands" [ngValue]="brand">
     {{ brand.brandName }}
-  </a>
-</ul>
+  </option>
+</select>
