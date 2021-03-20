@@ -36,13 +36,5 @@ export class BrandComponent implements OnInit {
   allBrandSelected() {
     return this.currentBrand == undefined ? true : false;
   }
-  // setCurrentBrand() {
-  //   this.currentBrand != null
-  //     ? this.router.navigate(['cars/'], {
-  //         queryParams: { brandId: this.currentBrand.id },
-  //         queryParamsHandling: 'merge',
-  //         relativeTo: this.route,
-  //       })
-  //     : this.router.navigate(['/cars']);
-  // }
+  
 }

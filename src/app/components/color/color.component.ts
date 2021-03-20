@@ -37,13 +37,4 @@ export class ColorComponent implements OnInit {
     return this.currentColor == undefined ? true : false;
   }
 
-  // setCurrentColor() {
-  //   this.currentColor != null
-  //     ? this.router.navigate(['cars/'], {
-  //         queryParams: { colorId: this.currentColor.id },
-  //         queryParamsHandling: 'merge',
-  //         relativeTo: this.route,
-  //       })
-  //     : this.router.navigate(['/cars']);
-  // }
 }
