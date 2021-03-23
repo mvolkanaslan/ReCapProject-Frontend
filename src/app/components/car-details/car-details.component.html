@@ -1,6 +1,14 @@
-<div class="card">
-  <div class="card-header">
+<div *ngIf='carDetails' class="card">
+  <div class="card-header d-flex justify-content-between">
     <h4>{{ carDetails.carName }}</h4>
+    <input
+      class="btn btn-success"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#rentModel"
+      data-bs-whatever="@mdo"
+      value="Rent"
+    />
   </div>
   <div class="row g-0">
     <div class="col-md-8">
@@ -60,4 +68,13 @@
       </div>
     </div>
   </div>
+</div>
+<div
+  class="modal fade"
+  id="rentModel"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <app-rent></app-rent>
 </div>

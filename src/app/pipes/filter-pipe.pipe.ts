@@ -1,17 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Car } from '../models/car';
+import { CarInfo } from '../models/carInfo';
 
 @Pipe({
   name: 'filterPipe',
 })
 export class FilterPipePipe implements PipeTransform {
-  transform(value: Car[], filterText: string): Car[] {
+  transform(value: CarInfo[], filterText: string): CarInfo[] {
     filterText ? filterText.toLocaleLowerCase() : '';
     return value.filter(
-      (car) =>
-        car.brandName.toLocaleLowerCase().includes(filterText) ||
-        car.colorName.toLocaleLowerCase().includes(filterText) ||
-        car.carName.toLocaleLowerCase().includes(filterText)
+      (carInfo) =>
+        carInfo.brandName.toLocaleLowerCase().includes(filterText) ||
+        carInfo.colorName.toLocaleLowerCase().includes(filterText) ||
+        carInfo.carName.toLocaleLowerCase().includes(filterText)
     );
   }
 }

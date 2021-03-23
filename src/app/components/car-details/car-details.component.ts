@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Car } from 'src/app/models/car';
+import { CarInfo } from 'src/app/models/carInfo';
 import { CarImage } from 'src/app/models/carImages';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./car-details.component.css'],
 })
 export class CarDetailsComponent implements OnInit {
-  carDetails: Car;
+  carDetails: CarInfo;
   carImages: CarImage[];
   BaseUrl = environment.apiBaseUrl;
 

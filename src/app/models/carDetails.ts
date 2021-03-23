@@ -1,7 +1,7 @@
-import { Car } from './car';
+import { CarInfo } from './carInfo';
 import { CarImage } from './carImages';
 
 export interface CarDetails {
-  car: Car;
+  car: CarInfo;
   carImages: CarImage[];
 }

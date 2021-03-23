@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Car } from 'src/app/models/car';
+import { CarInfo } from 'src/app/models/carInfo';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
 import { environment } from 'src/environments/environment';
@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  cars: Car[] = [];
+  cars: CarInfo[] = [];
   baseURL = environment.apiBaseUrl;
   cardefaultImgPath = environment.cardefaultImgPath;
   filterText: string = '';

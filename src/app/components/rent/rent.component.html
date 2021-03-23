@@ -1,0 +1,32 @@
+<div *ngIf='carDetails' class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">
+        Car to Rent : "{{ carDetails.carName }}"
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form  [formGroup]="rentAddForm">
+        <div  class="mb-3">
+          <label for="rent-date" class="col-form-label">Rent Date:</label>
+          <input  min="{{minRentDate}}" type="date" class="form-control" id="rent-date" formControlName="rentDate" />
+          <p>{{rentAddForm.controls['rentDate'].value}}</p>
+        </div>
+        <div class="mb-3">
+          <label for="return-date" class="col-form-label">Return Date:</label>
+          <input  [readonly]="!rentAddForm.controls['rentDate'].valid" [min]="rentAddForm.controls['rentDate'].value" type="date" class="form-control" id="return-date" formControlName="returnDate" />
+        </div>
+      </form>
+      
+    </div>
+    <div *ngIf='!error.isSuccess'name="fieldName" ngDefaultControl  [ngModel]='error' class="alert alert-danger">{{error.message}}</div>
+    <div class="modal-footer">
+      <p id="p_element"></p>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      <button  type="button" class="btn btn-primary" (click)="add()">Rent</button>
+    </div>
+  </div>
+</div>
