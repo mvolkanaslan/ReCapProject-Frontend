@@ -81,7 +81,7 @@ export class RentComponent implements OnInit {
     } else {
       this.IsRentable = {
         isSuccess: false,
-        message: 'Please Enter Rent Dates !',
+        message: 'Please Enter Required Areas !',
       };
     }
 
