@@ -64,7 +64,10 @@ export class PaymentComponent implements OnInit {
   }
   Payment() {
     if (this.paymentForm.valid) {
-      let payment = Object.assign({ amount: 2700 }, this.paymentForm.value);
+      let payment = Object.assign(
+        { amount: this.totalPrice },
+        this.paymentForm.value
+      );
       console.log(payment);
 
       this.paymentService.payment(payment).subscribe(
