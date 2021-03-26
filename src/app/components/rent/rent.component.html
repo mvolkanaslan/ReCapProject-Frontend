@@ -1,4 +1,4 @@
-<div *ngIf='carDetails' class="modal-dialog">
+<div *ngIf='carDetails' class="modal-dialog" id="rentModel">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
@@ -11,7 +11,6 @@
         <div  class="mb-3">
           <label for="rent-date" class="col-form-label">Rent Date:</label>
           <input  min="{{minRentDate}}" type="date" class="form-control" id="rent-date" formControlName="rentDate" />
-          <p>{{rentAddForm.controls['rentDate'].value}}</p>
         </div>
         <div class="mb-3">
           <label for="return-date" class="col-form-label">Return Date:</label>
@@ -20,13 +19,12 @@
       </form>
       
     </div>
-    <div *ngIf='!error.isSuccess'name="fieldName" ngDefaultControl  [ngModel]='error' class="alert alert-danger">{{error.message}}</div>
+    <div *ngIf='!IsRentable.isSuccess'name="fieldName" ngDefaultControl  [ngModel]='IsRentable' class="alert alert-danger">{{IsRentable.message}}</div>
     <div class="modal-footer">
-      <p id="p_element"></p>
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Close
       </button>
-      <button  type="button" class="btn btn-primary" (click)="add()">Rent</button>
+      <button type="button" class="btn btn-primary" (click)="goToPayment()">Rent</button>
     </div>
   </div>
 </div>

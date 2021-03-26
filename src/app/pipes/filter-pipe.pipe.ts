@@ -6,12 +6,12 @@ import { CarInfo } from '../models/carInfo';
 })
 export class FilterPipePipe implements PipeTransform {
   transform(value: CarInfo[], filterText: string): CarInfo[] {
-    filterText ? filterText.toLocaleLowerCase() : '';
+    filterText ? (filterText = filterText.toLowerCase()) : '';
     return value.filter(
       (carInfo) =>
-        carInfo.brandName.toLocaleLowerCase().includes(filterText) ||
-        carInfo.colorName.toLocaleLowerCase().includes(filterText) ||
-        carInfo.carName.toLocaleLowerCase().includes(filterText)
+        carInfo.brandName.toLowerCase().includes(filterText) ||
+        carInfo.colorName.toLowerCase().includes(filterText) ||
+        carInfo.carName.toLowerCase().includes(filterText)
     );
   }
 }

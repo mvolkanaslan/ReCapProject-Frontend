@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Rental } from '../models/rental';
 import { RentalDetails } from '../models/rentalDetails';
+import { ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,9 @@ export class RentalService {
       newURL,
       rental
     );
+  }
+  IsRentable(rental: Rental): Observable<ResponseModel> {
+    let newURL = this.apiURL + 'rentals/isrentable';
+    return this.httpCLient.post<ResponseModel>(newURL, rental);
   }
 }
