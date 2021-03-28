@@ -52,7 +52,7 @@ export class RentComponent implements OnInit {
     this.createRentAddForm();
   }
   getActiveCarDetail(carId: number) {
-    this.carService.getCarById(carId).subscribe((response) => {
+    this.carService.getCarDetailsById(carId).subscribe((response) => {
       this.carDetails = response.data[0];
     });
   }

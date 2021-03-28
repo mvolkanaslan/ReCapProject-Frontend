@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+}
+td {
+  font-size: 15px;
+}
+span.badge {
+  cursor: pointer;
+}

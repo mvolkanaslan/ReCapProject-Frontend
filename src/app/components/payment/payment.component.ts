@@ -50,7 +50,7 @@ export class PaymentComponent implements OnInit {
     });
   }
   getCarDetails(carId: number) {
-    this.carService.getCarById(carId).subscribe((response) => {
+    this.carService.getCarDetailsById(carId).subscribe((response) => {
       this.carToRent = response.data[0];
       this.getTotalPrice();
     });
@@ -59,7 +59,7 @@ export class PaymentComponent implements OnInit {
     let rentDate = new Date(this.rental.rentDate);
     let returnDate = new Date(this.rental.returnDate);
     this.totalDay =
-      (returnDate.getTime() - rentDate.getTime()) / (24 * 3600 * 1000);
+      (returnDate.getTime() - rentDate.getTime()) / (24 * 3600 * 1000) + 1;
     this.totalPrice = this.totalDay * this.carToRent.dailyPrice;
   }
   Payment() {

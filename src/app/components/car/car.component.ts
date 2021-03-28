@@ -32,23 +32,23 @@ export class CarComponent implements OnInit {
     });
   }
   getCars() {
-    this.carService.getCars().subscribe((response) => {
+    this.carService.getCarsDetails().subscribe((response) => {
       this.cars = response.data;
     });
   }
   getCarsByBrand(brandId: number) {
-    this.carService.getCarsByBrand(brandId).subscribe((response) => {
+    this.carService.getCarsDetailsByBrand(brandId).subscribe((response) => {
       this.cars = response.data;
     });
   }
   getCarsByColor(colorId: number) {
-    this.carService.getCarsByColor(colorId).subscribe((response) => {
+    this.carService.getCarsDetailsByColor(colorId).subscribe((response) => {
       this.cars = response.data;
     });
   }
   getCarByBrandAndColor(brandId: number, colorId: number) {
     this.carService
-      .getCarByBrandAndColor(brandId, colorId)
+      .getCarsDetailsByBrandAndColor(brandId, colorId)
       .subscribe((response) => {
         this.cars = response.data;
       });

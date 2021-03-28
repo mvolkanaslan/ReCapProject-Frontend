@@ -20,6 +20,8 @@ import { DatePipe } from '@angular/common';
 import { CreditCardNumberPipe } from './pipes/credit-card-number.pipe';
 import { RentalComponent } from './components/rental/rental.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CarManagementComponent } from './components/car-management/car-management.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -36,9 +38,11 @@ import { ToastrModule } from 'ngx-toastr';
     RentComponent,
     PaymentComponent,
     CreditCardNumberPipe,
+    CarManagementComponent,
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
