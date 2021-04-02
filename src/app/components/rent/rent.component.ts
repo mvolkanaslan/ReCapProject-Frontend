@@ -13,6 +13,7 @@ import {
 import { RentalService } from 'src/app/services/rental.service';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-rent',
@@ -39,7 +40,8 @@ export class RentComponent implements OnInit {
     private rentalService: RentalService,
     private router: Router,
     private datePipe: DatePipe,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
@@ -75,7 +77,7 @@ export class RentComponent implements OnInit {
         },
         (responseError) => {
           this.IsRentable = responseError.error;
-          this.toastrService.error(responseError.error.message);
+          this.errorService.getError(responseError);
         }
       );
     } else {
@@ -84,7 +86,5 @@ export class RentComponent implements OnInit {
         message: 'Please Enter Required Areas !',
       };
     }
-
-    //this.createRentAddForm();
   }
 }

@@ -22,6 +22,8 @@ import { RentalComponent } from './components/rental/rental.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CarManagementComponent } from './components/car-management/car-management.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrandManagementComponent } from './components/brand-management/brand-management.component';
+import { ColorManagementComponent } from './components/color-management/color-management.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PaymentComponent,
     CreditCardNumberPipe,
     CarManagementComponent,
+    BrandManagementComponent,
+    ColorManagementComponent,
   ],
   imports: [
     BrowserModule,

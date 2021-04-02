@@ -1,0 +1,91 @@
+<div class="row g-0">
+    <div class="">
+        <table class="table table-responsive-md table-striped table-hover table-bordered">
+            <thead>
+                <tr class="table-dark">
+                    <th>Color Id</th>
+                    <th>Color</th>
+                    <th class="d-flex justify-content-center"><button data-bs-toggle="modal" data-bs-target='#colorAddModal' class="btn btn-success btn-sm">Add Color</button></th>
+                </tr>
+            </thead>
+            <tbody *ngIf='colors'>
+                <tr *ngFor='let color of colors'>
+                    <td>{{color.id}}</td>
+                    <td>{{color.colorName}}</td>
+                    <td>
+                        <span (click)="getUpdateModal(color)"  class="badge bg-primary me-2" data-bs-toggle="modal" data-bs-target="#colorUpdateModal" ><fa-icon [icon]="icons.faEdit"></fa-icon></span>
+                        <span (click)='setColorToDelete(color.id)'  class="badge bg-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteColorModal"><fa-icon [icon]="icons.faTrash"></fa-icon></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!--  Update Model -->
+<div  class="modal fade" id="colorUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Color Informations</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='colorEditForm.reset()'></button>
+    </div>
+    <div  class="modal-body">
+      <form [formGroup]='colorEditForm'>        
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Colors</label>
+            <input type="text" class="form-control" formControlName='colorName' [value]=''>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='colorEditForm.reset()'>Close</button>
+      <button type="button" class="btn btn-primary" (click)='updateColor()'>Save changes</button>
+    </div>
+  </div>
+</div>
+</div>
+<!--  Add Model -->
+<div  class="modal fade" id="colorAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Color Informations</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='colorEditForm.reset()'></button>
+      </div>
+      <div  class="modal-body">
+        <form [formGroup]='colorEditForm'>        
+          <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">Color Name</label>
+              <input type="text" class="form-control" formControlName='colorName' placeholder="Enter Color Name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='colorEditForm.reset()'>Close</button>
+        <button type="button" class="btn btn-primary" (click)='addColor()'>Add New Color</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!-- Delete modal -->
+<div class="modal fade" id="deleteColorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Warning !</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div  class="modal-body">
+           <span>Are you sure you want to delete this Color ?</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)='deleteColor()'>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

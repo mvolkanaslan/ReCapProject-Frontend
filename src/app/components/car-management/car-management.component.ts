@@ -1,7 +1,7 @@
 declare var $: any;
 import { Component, OnInit } from '@angular/core';
 import { CarService } from 'src/app/services/car.service';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faImage } from '@fortawesome/free-solid-svg-icons';
 import { CarInfo } from 'src/app/models/carInfo';
 import {
   FormGroup,
@@ -16,7 +16,7 @@ import { ColorService } from 'src/app/services/color.service';
 import { Car } from 'src/app/models/car';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ElementSchemaRegistry } from '@angular/compiler';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-car-management',
@@ -30,11 +30,13 @@ export class CarManagementComponent implements OnInit {
     private brandService: BrandService,
     private colorService: ColorService,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private errorService: ErrorService
   ) {}
   carIdToDelete: Car;
   faTrash = faTrash;
   faEdit = faEdit;
+  faImage = faImage;
   carToEdit: Car;
   cars: CarInfo[] = [];
   brands: Brand[] = [];
@@ -75,8 +77,7 @@ export class CarManagementComponent implements OnInit {
           .then(() => this.router.navigate(['carmanage']));
       },
       (responseError) => {
-        this.toastrService.error(responseError);
-        console.log(responseError);
+        this.errorService.getError(responseError);
       }
     );
   }
@@ -104,16 +105,19 @@ export class CarManagementComponent implements OnInit {
     if (this.carEditForm.valid) {
       this.carToEdit = Object.assign({}, this.carEditForm.value);
       this.convertStrToInt(this.carToEdit);
-      console.log(this.carToEdit);
-
-      this.carService.carUpdate(this.carToEdit).subscribe((response) => {
-        this.carEditForm.reset();
-        $('#carUpdateModal').modal('hide');
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => this.router.navigate(['carmanage']));
-        this.toastrService.success(response.message);
-      });
+      this.carService.carUpdate(this.carToEdit).subscribe(
+        (response) => {
+          this.carEditForm.reset();
+          $('#carUpdateModal').modal('hide');
+          this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => this.router.navigate(['carmanage']));
+          this.toastrService.success(response.message);
+        },
+        (responseError) => {
+          this.errorService.getError(responseError);
+        }
+      );
     } else {
       this.toastrService.warning('Please fill the Form !');
     }
@@ -124,15 +128,19 @@ export class CarManagementComponent implements OnInit {
       this.carToEdit = Object.assign({}, this.carEditForm.value);
       this.convertStrToInt(this.carToEdit);
       console.log(this.carToEdit);
-      this.carService.carAdd(this.carToEdit).subscribe((response) => {
-        this.carEditForm.reset();
-        $('#carAddModal').modal('hide');
-
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => this.router.navigate(['carmanage']));
-        this.toastrService.success(response.message);
-      });
+      this.carService.carAdd(this.carToEdit).subscribe(
+        (response) => {
+          this.carEditForm.reset();
+          $('#carAddModal').modal('hide');
+          this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => this.router.navigate(['carmanage']));
+          this.toastrService.success(response.message);
+        },
+        (responseError) => {
+          this.errorService.getError(responseError);
+        }
+      );
     } else {
       this.toastrService.warning('Please Fill the Form !');
     }

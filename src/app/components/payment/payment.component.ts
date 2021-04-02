@@ -59,7 +59,7 @@ export class PaymentComponent implements OnInit {
     let rentDate = new Date(this.rental.rentDate);
     let returnDate = new Date(this.rental.returnDate);
     this.totalDay =
-      (returnDate.getTime() - rentDate.getTime()) / (24 * 3600 * 1000) + 1;
+      (returnDate.getTime() - rentDate.getTime()) / (24 * 3600 * 1000);
     this.totalPrice = this.totalDay * this.carToRent.dailyPrice;
   }
   Payment() {

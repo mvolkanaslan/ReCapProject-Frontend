@@ -1,0 +1,91 @@
+<div class="row g-0">
+    <div class="">
+        <table class="table table-responsive-md table-striped table-hover table-bordered">
+            <thead>
+                <tr class="table-dark">
+                    <th>Brand Id</th>
+                    <th>Brand</th>
+                    <th class="d-flex justify-content-center"><button data-bs-toggle="modal" data-bs-target='#brandAddModal' class="btn btn-success btn-sm">Add Brand</button></th>
+                </tr>
+            </thead>
+            <tbody *ngIf='brands'>
+                <tr *ngFor='let brand of brands'>
+                    <td>{{brand.id}}</td>
+                    <td>{{brand.brandName}}</td>
+                    <td>
+                        <span (click)="getUpdateModal(brand)"  class="badge bg-primary me-2" data-bs-toggle="modal" data-bs-target="#brandUpdateModal" ><fa-icon [icon]="icons.faEdit"></fa-icon></span>
+                        <span (click)='setBrandToDelete(brand.id)'  class="badge bg-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteBrandModal"><fa-icon [icon]="icons.faTrash"></fa-icon></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!--  Update Model -->
+<div  class="modal fade" id="brandUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Brand Informations</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='brandEditForm.reset()'></button>
+    </div>
+    <div  class="modal-body">
+      <form [formGroup]='brandEditForm'>        
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Brands</label>
+            <input type="text" class="form-control" formControlName='brandName' [value]=''>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='brandEditForm.reset()'>Close</button>
+      <button type="button" class="btn btn-primary" (click)='updateBrand()'>Save changes</button>
+    </div>
+  </div>
+</div>
+</div>
+<!--  Add Model -->
+<div  class="modal fade" id="brandAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Brand Informations</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='brandEditForm.reset()'></button>
+      </div>
+      <div  class="modal-body">
+        <form [formGroup]='brandEditForm'>        
+          <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">Brand Name</label>
+              <input type="text" class="form-control" formControlName='brandName' placeholder="Enter Brand Name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='brandEditForm.reset()'>Close</button>
+        <button type="button" class="btn btn-primary" (click)='addBrand()'>Add New Brand</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!-- Delete modal -->
+<div class="modal fade" id="deleteBrandModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Warning !</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div  class="modal-body">
+           <span>Are you sure you want to delete this Brand ?</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)='deleteBrand()'>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

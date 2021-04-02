@@ -9,7 +9,7 @@
                         <th>Color</th>
                         <th>Model Year</th>
                         <th>Daily Price</th>
-                        <th class="d-flex justify-content-center"><button data-bs-toggle="modal" data-bs-target='#carAddModal' class="btn btn-success btn-sm">Car Add</button></th>
+                        <th class="d-flex justify-content-center"><button data-bs-toggle="modal" data-bs-target='#carAddModal' class="btn btn-success btn-sm">Add Car</button></th>
                     </tr>
                 </thead>
                 <tbody *ngIf='cars'>
@@ -22,7 +22,9 @@
                         <td>{{car.dailyPrice | currency:'₺'}}</td>
                         <td>
                             <span  (click)='getUpdateModel(car)' class="badge bg-primary me-2" data-bs-toggle="modal" data-bs-target="#carUpdateModal" ><fa-icon [icon]="faEdit"></fa-icon></span>
-                            <span  (click)='setCarToDelete(car.carId)' class="badge bg-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><fa-icon [icon]="faTrash"></fa-icon></span>
+                            <span   class="badge bg-success me-2"><fa-icon [icon]="faImage"></fa-icon></span>
+                            <span  (click)='setCarToDelete(car.carId)' class="badge bg-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteModal"><fa-icon [icon]="faTrash"></fa-icon></span>
+                            
                         </td>
                     </tr>
                 </tbody>
