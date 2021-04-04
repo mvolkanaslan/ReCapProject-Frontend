@@ -1,12 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { CarComponent } from './components/car/car.component';
+import { CarListComponent } from './components/car-list/car-list.component';
 import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { BrandComponent } from './components/brand/brand.component';
@@ -24,11 +24,14 @@ import { CarManagementComponent } from './components/car-management/car-manageme
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrandManagementComponent } from './components/brand-management/brand-management.component';
 import { ColorManagementComponent } from './components/color-management/color-management.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarComponent,
+    CarListComponent,
     ColorComponent,
     CustomerComponent,
     RentalComponent,
@@ -43,6 +46,8 @@ import { ColorManagementComponent } from './components/color-management/color-ma
     CarManagementComponent,
     BrandManagementComponent,
     ColorManagementComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,10 @@ import { ColorManagementComponent } from './components/color-management/color-ma
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

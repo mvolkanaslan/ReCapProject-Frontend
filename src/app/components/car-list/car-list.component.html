@@ -1,0 +1,58 @@
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-12">
+    <app-filter></app-filter>
+  </div>
+  <div class="col-9 col-md-9 col-sm-12">
+    <div class="input-group mb-1">
+      <input
+        [(ngModel)]="filterText"
+        type="text"
+        class="form-control"
+        placeholder="Search by Car Name, Brand and Color"
+        aria-label="Search"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div *ngIf="filterText" class="alert alert-success">
+      Searched for "{{ filterText }}"
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let car of cars | filterPipe: filterText">
+        <div class="card h-100">
+          <!-- ! Araclarin default imajlari getirilecek -->
+          <img
+            src="{{
+              car.imagePath == null
+                ? baseURL + cardefaultImgPath
+                : baseURL + car.imagePath
+            }}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ car.carName }}</h5>
+    
+            <p class="card-text">Brand : {{ car.brandName }}</p>
+            <p class="card-text">Model Year : {{ car.modelYear }}</p>
+            <p class="card-text">Color : {{ car.colorName }}</p>
+            <p class="card-text">Daily Price : {{ car.dailyPrice }} ₺</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <input
+              class="btn btn-primary"
+              type="button"
+              value="Details"
+              routerLink="/cardetails/{{ car.carId }}"
+            />
+            <input class="btn btn-primary" type="button" value="Rent" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row">
+<div class="col-lg-6 col-md-12">
+    <main class="form-signin">
+        <form [formGroup]='registerForm'>
+            <!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+            <div class="form-floating mb-1">
+                <input type="text" class="form-control" placeholder="firstname" formControlName='firstname'>
+                <label for="floatingInput">First Name</label>
+            </div>
+            <div class="form-floating mb-1">
+                <input type="text" class="form-control"  placeholder="lastname" formControlName='lastname'>
+                <label for="floatingInput">Last Name</label>
+            </div>
+            <div class="form-floating mb-1">
+                <input type="email" class="form-control" placeholder="name@example.com" formControlName='email'>
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-1">
+                <input type="password" class="form-control" placeholder="Password" formControlName='password'>
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" (click)='register()'>Sign Up</button>
+        </form>
+    </main>
+</div>
+<div class="col-lg-6 col-md-12">
+    <img src="/assets/logo.png" alt="">
+    <img src="/assets/car-logo.png" alt="">
+</div>
+</div>

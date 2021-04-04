@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { CarInfo } from 'src/app/models/carInfo';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-car',
-  templateUrl: './car.component.html',
-  styleUrls: ['./car.component.css'],
+  selector: 'app-car-list',
+  templateUrl: './car-list.component.html',
+  styleUrls: ['./car-list.component.css'],
 })
-export class CarComponent implements OnInit {
+export class CarListComponent implements OnInit {
   cars: CarInfo[] = [];
   baseURL = environment.apiBaseUrl;
   cardefaultImgPath = environment.cardefaultImgPath;

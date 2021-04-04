@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { CarInfo } from '../models/carInfo';
-import { EntityResponseModel } from '../models/entityResponseModel';
+import { SingleResponseModel } from '../models/SingleResponseModel';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Car } from '../models/car';
 import { ResponseModel } from '../models/responseModel';
