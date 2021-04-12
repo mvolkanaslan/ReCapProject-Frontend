@@ -127,7 +127,6 @@ export class CarManagementComponent implements OnInit {
       this.carEditForm.removeControl('id');
       this.carToEdit = Object.assign({}, this.carEditForm.value);
       this.convertStrToInt(this.carToEdit);
-      console.log(this.carToEdit);
       this.carService.carAdd(this.carToEdit).subscribe(
         (response) => {
           this.carEditForm.reset();

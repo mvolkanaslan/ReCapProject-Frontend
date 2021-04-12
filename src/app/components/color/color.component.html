@@ -1,33 +1,12 @@
-<select
-  [(ngModel)]="currentColor"
+<form [formGroup]='colorForm'>
+  <select
+  formControlName='id'
   (change)="setCurrentColor()"
   class="form-select mb-1"
   aria-label="Default select example"
 >
-  <option [selected]="allColorsSelected()" [ngValue]="allColor">
-    Select a Color
-  </option>
-  <option *ngFor="let color of colors" [ngValue]="color">
+  <option  type='number' *ngFor="let color of colors" [ngValue]="color.id" >
     {{ color.colorName }}
   </option>
 </select>
-<!-- 
-<ul class="list-group mb-1">
-  <li class="list-group-item active">COLORS</li>
-  <a
-    href="#"
-    routerLink="/cars/"
-    (click)="setCurrentColor(allColor)"
-    [class]="toggleClass(allColor)"
-    >ALL COLORS</a
-  >
-  <a
-    href="#"
-    *ngFor="let color of colors"
-    (click)="setCurrentColor(color)"
-    routerLink="/cars/color/{{ color.id }}"
-    [class]="toggleClass(color)"
-  >
-    {{ color.colorName }}
-  </a>
-</ul> -->
+</form>

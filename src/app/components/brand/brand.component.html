@@ -1,13 +1,13 @@
-<select
+<form [formGroup]='brandForm'>
+  <select
+  formControlName='id'
   (change)="setCurrentBrand()"
-  [(ngModel)]="currentBrand"
   class="form-select mb-1"
   aria-label="Default select example"
 >
-  <option [selected]="allBrandSelected()" [ngValue]="allBrand">
-    Select a Brand
-  </option>
-  <option *ngFor="let brand of brands" [ngValue]="brand">
+  <option *ngFor="let brand of brands;" [ngValue]="brand.id" >
     {{ brand.brandName }}
   </option>
 </select>
+</form>
+

@@ -1,4 +1,4 @@
 export interface Filter {
-  brandId?: string;
-  colorId?: string;
+  brandId?: number;
+  colorId?: number;
 }

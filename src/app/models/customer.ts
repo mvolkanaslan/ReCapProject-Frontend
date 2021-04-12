@@ -1,4 +1,6 @@
 export interface Customer {
-  customerName: string;
+  customerId: number;
+  userId: number;
   companyName: string;
+  findexScore: number;
 }

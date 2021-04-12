@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 export class CarListComponent implements OnInit {
   cars: CarInfo[] = [];
   baseURL = environment.apiBaseUrl;
+
   cardefaultImgPath = environment.cardefaultImgPath;
   filterText: string = '';
 

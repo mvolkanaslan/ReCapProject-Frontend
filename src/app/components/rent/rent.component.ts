@@ -14,6 +14,7 @@ import { RentalService } from 'src/app/services/rental.service';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from 'src/app/services/error.service';
+import { CustomerDetails } from 'src/app/models/customerDetails';
 
 @Component({
   selector: 'app-rent',
@@ -32,6 +33,7 @@ export class RentComponent implements OnInit {
   modelStatus: string = '';
   minRentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   minReturnDate: string;
+  activeUser: CustomerDetails;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +47,7 @@ export class RentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.activeUser = JSON.parse(localStorage.getItem('User') || '{}');
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
         this.carID = parseInt(params['carId']);
@@ -61,7 +64,7 @@ export class RentComponent implements OnInit {
   createRentAddForm() {
     this.rentAddForm = this.formBuilder.group({
       carId: [this.carID, Validators.required],
-      customerId: [1, Validators.required], //Id si 1 olan customer in kullanici girisi yaptigi varsayiliyor
+      customerId: [this.activeUser.customerId, Validators.required], //Id si 1 olan customer in kullanici girisi yaptigi varsayiliyor
       rentDate: ['', Validators.required],
       returnDate: ['', Validators.required],
     });

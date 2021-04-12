@@ -20,7 +20,7 @@
                         <td>{{car.colorName}}</td>
                         <td>{{car.modelYear}}</td>
                         <td>{{car.dailyPrice | currency:'₺'}}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <span  (click)='getUpdateModel(car)' class="badge bg-primary me-2" data-bs-toggle="modal" data-bs-target="#carUpdateModal" ><fa-icon [icon]="faEdit"></fa-icon></span>
                             <span   class="badge bg-success me-2"><fa-icon [icon]="faImage"></fa-icon></span>
                             <span  (click)='setCarToDelete(car.carId)' class="badge bg-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteModal"><fa-icon [icon]="faTrash"></fa-icon></span>
@@ -94,7 +94,7 @@
             <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">Brands</label>
                 <select class="form-select"  formControlName='brandId'>
-                  <option type="number" *ngFor='let brand of brands,' value={{brand.id}}>{{brand.brandName}}</option>
+                  <option type="number" *ngFor='let brand of brands,' [value]="brand.id">{{brand.brandName}}</option>
                 </select>
             </div>
             <div class="input-group mb-3">
@@ -139,4 +139,6 @@
           </div>
         </div>
       </div>
+
+
 

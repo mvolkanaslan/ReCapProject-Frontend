@@ -68,7 +68,6 @@ export class PaymentComponent implements OnInit {
         { amount: this.totalPrice },
         this.paymentForm.value
       );
-      console.log(payment);
 
       this.paymentService.payment(payment).subscribe(
         (response) => {

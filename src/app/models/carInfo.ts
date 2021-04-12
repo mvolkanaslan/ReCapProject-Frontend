@@ -8,4 +8,5 @@ export interface CarInfo {
   dailyPrice: number;
   modelYear: number;
   imagePath: string;
+  findexScore: number;
 }

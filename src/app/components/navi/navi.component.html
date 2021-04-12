@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-1">
   <div class="container">
-    <img src="/assets/logo.png" style="width: 20%;">
+    <img routerLink='/' src="/assets/logo.png" style="width: 20%;">
     <button
       class="navbar-toggler"
       type="button"
@@ -12,39 +12,17 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!-- <svg id="people-circle" viewBox="0 0 16 16" style="width: 30px; color:white; height:auto">
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+    </svg> -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/rentals/">Rentals</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="carmanage">Car Manage</a></li>
-            <li><a class="dropdown-item" routerLink="brandmanage">Brand Manage</a></li>
-            <li><a class="dropdown-item" routerLink="colormanage">Color Manage</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        
       </ul>
-      <form class="d-flex">
-        <button class="btn btn-success btn-sm me-2" type="submit" routerLink='/register'>Register</button>
-        <button class="btn btn-success btn-sm" type="submit" routerLink='/login'>Login</button>
-      </form>
+        <app-usermenu></app-usermenu>
     </div>
   </div>
 </nav>

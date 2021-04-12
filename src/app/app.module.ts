@@ -27,6 +27,8 @@ import { ColorManagementComponent } from './components/color-management/color-ma
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { UsermenuComponent } from './components/usermenu/usermenu.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { RegisterComponent } from './components/register/register.component';
     ColorManagementComponent,
     LoginComponent,
     RegisterComponent,
+    UsermenuComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
