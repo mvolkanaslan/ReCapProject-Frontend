@@ -1,6 +1,6 @@
 # ReCapProjectFrontend
  
- <img src="https://github.com/mvolkanaslan/ReCapProject-Frontend/blob/master/src/assets/Rent%20A%20Car%20Project%20Demo.gif" width="75%" height="auto">
+ <img src="https://github.com/mvolkanaslan/ReCapProject-Frontend/blob/master/src/assets/Rent%20A%20Car%20Project%20Demo.gif" width="100%" height="auto">
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 
