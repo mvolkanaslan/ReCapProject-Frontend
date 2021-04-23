@@ -3,5 +3,5 @@ export interface RentalDetails {
   customerName: string;
   companyName: string;
   rentDate: Date;
-  returnDate?: Date;
+  returnDate: Date;
 }

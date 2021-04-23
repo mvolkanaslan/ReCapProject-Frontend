@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faWindowRestore } from '@fortawesome/free-solid-svg-icons';
 import { CustomerDetails } from 'src/app/models/customerDetails';
-import { AuthService } from 'src/app/services/auth.service';
-import { CustomerService } from 'src/app/services/customer.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -22,8 +21,9 @@ export class UsermenuComponent implements OnInit {
   ngOnInit(): void {
     this.getActiveUser();
   }
+
   userIsLogined() {
-    if (this.storageServise.getItem('token')) return true;
+    if (this.storageServise.getToken()) return true;
     else return false;
   }
   logout() {
@@ -31,13 +31,12 @@ export class UsermenuComponent implements OnInit {
     this.storageServise.deleteActiveUser();
     this.router.navigate(['']);
   }
-  getActiveUser(): CustomerDetails {
-    return this.storageServise.getActiveUser();
-  }
+
   userIsAdmin(): boolean {
     return this.getActiveUser().claims.includes('admin');
   }
-  showuser() {
-    console.log(environment.activeUser);
+  getActiveUser(): CustomerDetails {
+    this.activeUser = this.storageService.getActiveUser();
+    return this.activeUser;
   }
 }

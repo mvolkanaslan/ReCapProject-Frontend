@@ -1,49 +1,24 @@
 <div *ngIf='carDetails' class="card">
   <div class="card-header d-flex justify-content-between">
     <h4>{{ carDetails.carName }}</h4>
-    <input
-      class="btn btn-success"
-      type="button"
-      data-bs-toggle="modal"
-      data-bs-target="#rentModel"
-      data-bs-whatever="@mdo"
-      value="Rent" 
-    />
   </div>
   <div class="row g-0">
     <div class="col-md-8">
-      <div
-        id="carouselExampleControls"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <!-- <div class="carousel-indicators" id="btn-carousel">
+        </div> -->
         <div class="carousel-inner">
-          <div
-            class="carousel-item {{ i == 0 ? 'active' : null }}"
-            *ngFor="let carImage of carImages; let i = index"
-          >
-            <img
-              src="{{ BaseUrl }}{{ carImage.imagePath }}"
-              class="d-block w-100"
-              alt="..."
-            />
+          <div class="carousel-item {{ i == 0 ? 'active' : null }}" *ngFor="let carImage of carImages; let i = index">
+            <img src="{{ BaseUrl }}{{ carImage.imagePath }}" class="d-block w-100" alt="..." />
           </div>
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -55,29 +30,34 @@
           <li class="list-group-item">
             <h5>Car Details</h5>
           </li>
-          <li class="list-group-item">Model : {{ carDetails.carName }}</li>
-          <li class="list-group-item">Brand : {{ carDetails.brandName }}</li>
-          <li class="list-group-item">
-            Model Year : {{ carDetails.modelYear }}
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Model</span><span>{{ carDetails.carName }}</span>
           </li>
-          <li class="list-group-item">Color : {{ carDetails.colorName }}</li>
-          <li class="list-group-item">
-            Findex Score : {{ carDetails.findexScore }}
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Brand</span><span>{{ carDetails.brandName }}</span>
           </li>
-          <li class="list-group-item">
-            Daily Price : {{ carDetails.dailyPrice }} ₺
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Model Year</span><span>{{ carDetails.modelYear }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Color</span><span></span>{{ carDetails.colorName }}
+          </li>
+          <li class="list-group-item d-flex justify-content-between {{!isFindexEnough?'bg-warning':null}}">
+            <span>Findex Score</span><span>{{ carDetails.findexScore }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Daily Price</span><span>{{ carDetails.dailyPrice }} ₺</span>
           </li>
         </ul>
+        <input *ngIf='isFindexEnough' class="btn btn-success mt-3 col-12" type="button" data-bs-toggle="modal"
+          data-bs-target="#rentModel" data-bs-whatever="@mdo" value="Rent" />
+        <div *ngIf='!isFindexEnough' class="alert bg-info mt-2" role="alert">
+          Your Findex Score is Insufficient !
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div
-  class="modal fade"
-  id="rentModel"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="rentModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <app-rent></app-rent>
 </div>

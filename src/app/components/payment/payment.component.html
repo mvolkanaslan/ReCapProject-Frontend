@@ -1,78 +1,96 @@
-
-  <div *ngIf='carToRent && totalPrice && totalDay' class="row">
-      <div  class="col-md-7">
-            <div class="card card-outline-secondary">
-                <div class="card-body">
-                    <h3 class="text-center">Credit Card Payment</h3>
-                    <hr>
-                    <form [formGroup]='paymentForm' class="form" autocomplete="off">
-                        <div class="form-group">
-                            <p for="cc_name " class="mb-0">Card Holder's Name</p>
-                            <input type="text" class="form-control mt-1" id="cc_name" [value]="paymentForm.controls['holderName'].value" formControlName='holderName' required="required">
+<div class="row mt-2">
+    <div class="col-md-7">
+        <div class="card card-outline-secondary">
+            <div class="card-body">
+                <h3 class="text-center">Credit Card Payment</h3>
+                <hr>
+                <form [formGroup]='paymentForm' class="form" autocomplete="off">
+                    <div class="form-group">
+                        <p for="cc_name " class="mb-0">Card Holder's Name</p>
+                        <input type="text" class="form-control mt-1" id="cc_name" [value]=""
+                            formControlName='holderName'>
+                    </div>
+                    <div class="form-group">
+                        <p class="mb-0 mt-3">Card Number</p>
+                        <input type="text" class="form-control" autocomplete="off" maxlength="16" [value]=""
+                            formControlName='cardNumber'>
+                    </div>
+                    <div class="form-group row">
+                        <p class="col-md-12 mb-0 mt-3">Card Exp. Date</p>
+                        <div class="col-md-4">
+                            <select class="form-control mb-1" name="cc_exp_mo" formControlName='mounthOfExp'>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <p class="mb-0 mt-3">Card Number</p>
-                            <input type="text" class="form-control" autocomplete="off" maxlength="16" [value]="paymentForm.controls['cardNumber'].value"  formControlName='cardNumber'>
+                        <div class="col-md-4">
+                            <select class="form-control mb-1" name="cc_exp_yr" size="0" formControlName='yearOfExp'>
+                                <option>2021</option>
+                                <option>2022</option>
+                                <option>2023</option>
+                                <option>2024</option>
+                                <option>2025</option>
+                            </select>
                         </div>
-                        <div class="form-group row">
-                            <p class="col-md-12 mb-0 mt-3">Card Exp. Date</p>
-                            <div class="col-md-4">
-                                <select class="form-control mb-1" name="cc_exp_mo" formControlName='mounthOfExp'>
-                                    <option value="01">01</option>
-                                    <option value="02">02</option>
-                                    <option value="03">03</option>
-                                    <option value="04">04</option>
-                                    <option value="05">05</option>
-                                    <option value="06">06</option>
-                                    <option value="07">07</option>
-                                    <option value="08">08</option>
-                                    <option value="09">09</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control mb-1" name="cc_exp_yr" size="0" formControlName='yearOfExp'>
-                                    <option>2021</option>
-                                    <option>2022</option>
-                                    <option>2023</option>
-                                    <option>2024</option>
-                                    <option>2025</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <input formControlName='cvc' type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required="" placeholder="CVC">
-                            </div>
+                        <div class="col-md-4">
+                            <input formControlName='cvv' type="text" class="form-control" autocomplete="off"
+                                maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required=""
+                                placeholder="CVC">
                         </div>
-                        
-                            <p class="col-md-12 mb-0 mt-3">Amount</p>
-                        <div class="form-inline">
+                    </div>
+                    <div class="row form-inline">
+                        <div class="col-md-8 mt-3">
                             <div class="input-group">
+                                <p class="col-12 mb-0">Amount</p>
                                 <div class="input-group-prepend"><span class="input-group-text">₺</span></div>
-                                <input disabled=true type="text" class="form-control text-right" placeholder="" value="{{totalPrice | number:'1.0-0'}}" >
-                                
+                                <input disabled=true type="text" class="form-control text-right" placeholder=""
+                                    value="{{totalPrice | number:'1.0-0'}}">
                             </div>
                         </div>
-                        <hr>
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <button class="btn btn-success btn-lg btn-block col-12" (click)='Payment()'>Proceed to Payment</button>
-                            </div>
+
+                        <div class="col-md-4 pt-5">
+                            <input type="checkbox" class="form-check-input me-2" id="exampleCheck1"
+                                formControlName='saveCardStatus'>
+                            <label class="form-check-label" for="exampleCheck1">Save Credit Card</label>
                         </div>
-                    </form>
-                </div>
+
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <button class="btn btn-success btn-lg btn-block col-12" (click)='Payment()'>Proceed to
+                                Payment</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-      </div>
-      <div class="col-md-5">
-          <div class="card">
-              <div class="card-header"><h6>Car Details</h6></div>
-              <div  class="card-body">
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div *ngIf='carToRent' class="card mb-3">
+            <div class="card-header">
+                <h5>Car Details</h5>
+            </div>
+            <div class="card-body">
                 <table class="table">
                     <tbody>
                         <tr>
                             <td>Car Name</td>
                             <td>{{carToRent.carName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Findex Score</td>
+                            <td>{{carToRent.findexScore}}</td>
                         </tr>
                         <tr>
                             <td>Rent Date</td>
@@ -91,15 +109,28 @@
                             <td>{{carToRent.dailyPrice | currency:'₺'}}</td>
                         </tr>
                         <tr>
-                            <td><h5>TOTAL PRICE</h5></td>
-                            <td><h5>{{totalPrice | currency:'₺'}}</h5></td>
+                            <td>
+                                <h5>TOTAL PRICE</h5>
+                            </td>
+                            <td>
+                                <h5>{{totalPrice | currency:'₺'}}</h5>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-              </div>
-          </div>
-      </div>
-  </div>
-  
-  
-  
+                <div *ngIf="customerCreditCards.length>0" class="card">
+                    <div class="card-header">Your Credit Cards</div>
+                    <div class="card-body p-0">
+                        <div class="list-group">
+                            <a (click)="selectCreditCard(creditCard)" *ngFor="let creditCard of customerCreditCards"
+                                class="list-group-item list-group-item-action d-flex justify-content-between"><span>{{creditCard.holderName}}</span><span>****
+                                    **** **** {{creditCard.cardNumber.slice(12,16)}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

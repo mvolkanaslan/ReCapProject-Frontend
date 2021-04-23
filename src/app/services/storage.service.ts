@@ -6,9 +6,18 @@ import { CustomerDetails } from '../models/customerDetails';
 })
 export class StorageService {
   constructor() {}
-  setItem(key: string, value: string) {
-    localStorage.setItem(key, value);
+
+  //Token Storage
+  setToken(value: string) {
+    localStorage.setItem('token', value);
   }
+  getToken() {
+    return localStorage.getItem('token');
+  }
+  deleteToken() {
+    localStorage.removeItem('token');
+  }
+  //-----------------------------------
 
   //USER STORAGE------------------------
   setActiveUser(value: string) {
@@ -21,10 +30,6 @@ export class StorageService {
     localStorage.removeItem('User');
   }
   //-------------------------------------
-
-  getItem(key: string) {
-    return localStorage.getItem(key);
-  }
 
   deleteItem(key: string) {
     localStorage.removeItem(key);

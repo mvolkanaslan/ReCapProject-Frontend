@@ -89,6 +89,7 @@ export class CarManagementComponent implements OnInit {
       modelYear: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       dailyPrice: new FormControl('', Validators.required),
+      findexScore: new FormControl('', Validators.required),
     });
   }
   getUpdateModel(car: CarInfo) {
@@ -99,6 +100,7 @@ export class CarManagementComponent implements OnInit {
       modelYear: car.modelYear,
       description: car.carName,
       dailyPrice: car.dailyPrice,
+      findexScore: car.findexScore,
     });
   }
   updateCar() {

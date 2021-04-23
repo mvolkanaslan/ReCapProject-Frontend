@@ -10,7 +10,7 @@
       <form  [formGroup]="rentAddForm">
         <div  class="mb-3">
           <label for="rent-date" class="col-form-label">Rent Date:</label>
-          <input  min="{{minRentDate}}" type="date" class="form-control" id="rent-date" formControlName="rentDate" />
+          <input [readonly]='!isUserLogin()' min="{{minRentDate}}" type="date" class="form-control" id="rent-date" formControlName="rentDate" />
         </div>
         <div class="mb-3">
           <label for="return-date" class="col-form-label">Return Date:</label>
@@ -20,11 +20,17 @@
       
     </div>
     <div *ngIf='!IsRentable.isSuccess'name="fieldName" ngDefaultControl  [ngModel]='IsRentable' class="alert alert-danger">{{IsRentable.message}}</div>
+    <div *ngIf='!isUserLogin()' name="fieldName" ngDefaultControl  [ngModel]='IsRentable' class="alert alert-danger d-flex justify-content-center">
+          You Have to Login for Rental !
+    </div>
+    
     <div class="modal-footer">
+      <button *ngIf='!isUserLogin()' type="button" class="btn btn-primary" data-bs-dismiss="modal" routerLink='/register'>Register</button>
+      <button *ngIf='!isUserLogin()' type="button" class="btn btn-primary" data-bs-dismiss="modal" routerLink='/login'>Login</button>
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Close
       </button>
-      <button type="button" class="btn btn-primary" (click)="goToPayment()">Rent</button>
+      <button *ngIf='isUserLogin()' type="button" class="btn btn-primary" (click)="goToPayment()">Rent</button>
     </div>
   </div>
 </div>

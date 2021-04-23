@@ -1,0 +1,138 @@
+<div class="row mt-3">
+
+  <div class="col-md-3 mb-3">
+
+    <div class="card">
+      <div class="d-flex justify-content-center">
+        <i class="fas fa-user-circle fa-10x m-3"></i>
+      </div>
+      <div class="card-body" style="text-align: center;">
+        <h3 class="card-title">{{activeUser.firstName + ' ' + activeUser.lastName}}</h3>
+        <h5 class="card-text">{{activeUser.companyName}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between"><span>Email</span><span>{{activeUser.email}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between"><span>Findex
+            Score</span><span>{{activeUser.findexScore}}</span></li>
+      </ul>
+      <div class="card-footer p-1">
+        <button class="btn btn-dark col-12" data-bs-toggle="modal" data-bs-target="#userUpdateModal">Update Your
+          Profile</button>
+      </div>
+      <div class="card-footer p-1">
+        <button class="btn btn-dark col-12" data-bs-toggle="modal" data-bs-target="#passwordUpdateModal">Change
+          Password</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <table class="table table-hover">
+      <thead class="bg-dark text-white">
+        <tr>
+          <th colspan='5'>My Rentals</th>
+        </tr>
+      </thead>
+      <thead class="bg-dark text-white">
+        <tr>
+          <th scope="col">Car Name</th>
+          <th scope="col">Customer</th>
+          <th scope="col">Rent Date</th>
+          <th scope="col">Return Date</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let rental of rentals'>
+          <th>{{rental.carName}}</th>
+          <td>{{rental.customerName}}</td>
+          <td>{{rental.rentDate | date}}</td>
+          <td>{{rental.returnDate | date}}</td>
+          <td>{{rentalStatus(rental)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<!-- User Update Modal -->
+<div class="modal fade" id="userUpdateModal" tabindex="-1" aria-labelledby="userUpdateModalLabel" aria-hidden="true"
+  data-bs-backdrop="static">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userUpdateModalLabel">Update Your Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]='userUpdateForm'>
+          <label class="form-label">First Name - Last Name</label>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First Name" formControlName='firstName'>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last Name" formControlName='lastName'>
+            </div>
+          </div>
+          <label class="form-label">Company</label>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Your Company" formControlName='companyName'>
+            </div>
+          </div>
+          <label class="form-label">E-Mail</label>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="email" class="form-control" placeholder="yourname@server.com" formControlName='email'>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)='updateUser()'>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Password Change Model -->
+<div class="modal fade" id="passwordUpdateModal" tabindex="-1" aria-labelledby="passwordUpdateModalLabel"
+  data-bs-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="passwordUpdateModalLabel">Update Your Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]='passwordUpdateForm'>
+          <label class="form-label">Change Password</label>
+          <div class="row mb-3">
+            <div class="mb-3">
+              <input type="password" class="form-control" placeholder="Current Password" formControlName='Password'>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" placeholder="New Password" formControlName='newPassword'>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" placeholder="Confirm Password"
+                formControlName='confirmPassword'>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)='passwordUpdateForm.reset()'>Close</button>
+        <button type="button" class="btn btn-primary" (click)='changeUserPassword()'>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

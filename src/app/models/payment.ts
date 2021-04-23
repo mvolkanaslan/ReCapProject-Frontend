@@ -1,8 +1,5 @@
-export interface Payment {
-  holderName: string;
-  cardNumber: string;
-  mounthOfExp: string;
-  yearOfExp: string;
-  cvc: string;
+import { CreditCard } from './creditCard';
+
+export interface Payment extends CreditCard {
   amount: number;
 }

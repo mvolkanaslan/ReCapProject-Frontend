@@ -41,13 +41,12 @@ export class LoginComponent implements OnInit {
   }
   login() {
     if (this.loginForm.valid) {
-      this.setActiveUser(this.loginForm.controls['email'].value);
       let loginModel = Object.assign({}, this.loginForm.value);
       this.authService.login(loginModel).subscribe(
         (response) => {
-          this.router.navigate(['']);
+          this.setActiveUser(this.loginForm.controls['email'].value);
           this.toastrService.success(response.message);
-          this.storageService.setItem('token', response.data.token);
+          this.storageService.setToken(response.data.token);
         },
         (responseError) => {
           this.toastrService.error(responseError.error);
@@ -61,7 +60,9 @@ export class LoginComponent implements OnInit {
       .subscribe((response) => {
         this.activeUser = Object.assign({
           email: response.data[0].email,
-          customerName: response.data[0].customerName,
+          firstName: response.data[0].firstName,
+          lastName: response.data[0].lastName,
+          companyName: response.data[0].companyName,
           customerId: response.data[0].customerId,
           userId: response.data[0].userId,
           findexScore: response.data[0].findexScore,
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
         });
 
         this.storageService.setActiveUser(JSON.stringify(this.activeUser));
+        this.router.navigate(['']);
       });
   }
 }

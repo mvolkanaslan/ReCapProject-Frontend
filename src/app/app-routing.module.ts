@@ -12,6 +12,7 @@ import { LoginGuard } from './guards/login.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { AdminGuard } from './guards/admin.guard';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarListComponent },
@@ -49,6 +50,11 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: 'account',
+    component: UserProfileComponent,
+    canActivate: [LoginGuard],
+  },
 ];
 
 @NgModule({

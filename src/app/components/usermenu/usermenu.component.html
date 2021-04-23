@@ -1,27 +1,28 @@
-
-  <div *ngIf='!userIsLogined()'>
-    <form class="d-flex">
-      <button class="btn btn-success btn-sm me-2" type="submit" routerLink='/register'>Register</button>
-      <button class="btn btn-success btn-sm" type="submit" routerLink='/login'>Login</button>
-    </form>
-  </div>
-
-  <div *ngIf='userIsLogined()' class="btn-group">
-    <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    {{getActiveUser().customerName}}
-    </button>
-    <ul class="dropdown-menu">
-    <li ><a  class="dropdown-item" (click)='showuser()'>Your Profile</a></li>
-    <div *ngIf='userIsAdmin()'>
-      <li ><a  class="dropdown-item" routerLink="/rentals/">Rental Management</a></li> 
-      <li ><a  class="dropdown-item" routerLink='/carmanage'>Car Management</a></li>
-      <li ><a  class="dropdown-item" routerLink='/brandmanage'>Brand Management</a></li>
-      <li ><a  class="dropdown-item" routerLink='/colormanage'>Color Management</a></li>
-      
-    </div>
-        
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" (click)='logout()'>Log Out</a></li>
-    </ul>
+<div *ngIf='!userIsLogined()'>
+  <form class="d-flex">
+    <button class="btn btn-success btn-sm me-2" type="submit" routerLink='/register'>Register</button>
+    <button class="btn btn-success btn-sm" type="submit" routerLink='/login'>Login</button>
+  </form>
 </div>
-    
+
+<div *ngIf="userIsLogined()" class="btn-group">
+  <button *ngIf='activeUser.firstName' type="button" class="btn btn-danger btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown" aria-expanded="false">
+    {{ activeUser.firstName +' '+ activeUser.lastName}}
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" routerLink='/account'>Your Profile</a></li>
+    <div *ngIf='userIsAdmin()'>
+      <li><a class="dropdown-item" routerLink="/rentals/">Rental Management</a></li>
+      <li><a class="dropdown-item" routerLink='/carmanage'>Car Management</a></li>
+      <li><a class="dropdown-item" routerLink='/brandmanage'>Brand Management</a></li>
+      <li><a class="dropdown-item" routerLink='/colormanage'>Color Management</a></li>
+
+    </div>
+
+    <li>
+      <hr class="dropdown-divider">
+    </li>
+    <li><a class="dropdown-item" (click)='logout()'>Log Out</a></li>
+  </ul>
+</div>

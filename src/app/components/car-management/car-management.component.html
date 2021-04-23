@@ -1,144 +1,164 @@
-    <div class="row g-0">
-        <div class="">
-            <table class="table table-responsive-md table-striped table-hover table-bordered">
-                <thead>
-                    <tr class="table-dark">
-                        <th>Car Id</th>
-                        <th>Model</th>
-                        <th>Brand</th>
-                        <th>Color</th>
-                        <th>Model Year</th>
-                        <th>Daily Price</th>
-                        <th class="d-flex justify-content-center"><button data-bs-toggle="modal" data-bs-target='#carAddModal' class="btn btn-success btn-sm">Add Car</button></th>
-                    </tr>
-                </thead>
-                <tbody *ngIf='cars'>
-                    <tr *ngFor='let car of cars'>
-                        <td>{{car.carId}}</td>
-                        <td>{{car.carName}}</td>
-                        <td>{{car.brandName}}</td>
-                        <td>{{car.colorName}}</td>
-                        <td>{{car.modelYear}}</td>
-                        <td>{{car.dailyPrice | currency:'₺'}}</td>
-                        <td style="text-align: center;">
-                            <span  (click)='getUpdateModel(car)' class="badge bg-primary me-2" data-bs-toggle="modal" data-bs-target="#carUpdateModal" ><fa-icon [icon]="faEdit"></fa-icon></span>
-                            <span   class="badge bg-success me-2"><fa-icon [icon]="faImage"></fa-icon></span>
-                            <span  (click)='setCarToDelete(car.carId)' class="badge bg-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteModal"><fa-icon [icon]="faTrash"></fa-icon></span>
-                            
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="row g-0">
+  <div class="">
+    <table class="table table-responsive-md table-striped table-hover table-bordered">
+      <thead>
+        <tr class="table-dark">
+          <th>Car Id</th>
+          <th>Model</th>
+          <th>Brand</th>
+          <th>Color</th>
+          <th>Model Year</th>
+          <th>Daily Price</th>
+          <th>Findex Score</th>
+          <th class="d-flex justify-content-center"><button data-bs-toggle="modal" data-bs-target='#carAddModal'
+              class="btn btn-success btn-sm">Add Car</button></th>
+        </tr>
+      </thead>
+      <tbody *ngIf='cars'>
+        <tr *ngFor='let car of cars'>
+          <td>{{car.carId}}</td>
+          <td>{{car.carName}}</td>
+          <td>{{car.brandName}}</td>
+          <td>{{car.colorName}}</td>
+          <td>{{car.modelYear}}</td>
+          <td>{{car.dailyPrice | currency:'₺'}}</td>
+          <td style="text-align: center;">{{car.findexScore}}</td>
+          <td style="text-align: center;">
+            <span (click)='getUpdateModel(car)' class="badge bg-primary me-2" data-bs-toggle="modal"
+              data-bs-target="#carUpdateModal">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </span>
+            <span class="badge bg-success me-2">
+              <fa-icon [icon]="faImage"></fa-icon>
+            </span>
+            <span (click)='setCarToDelete(car.carId)' class="badge bg-danger me-2" data-bs-toggle="modal"
+              data-bs-target="#deleteModal">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </span>
 
-
-    <!--  Update Model -->
-  <div  class="modal fade" id="carUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update Car Informations</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='carEditForm.reset()'></button>
-        </div>
-        <div  class="modal-body">
-          <form [formGroup]='carEditForm'>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Model</span>
-                <input type="text" class="form-control" formControlName='description' placeholder="Enter Car Model">
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Brands</label>
-                <select class="form-select" formControlName='brandId'>
-                  <option  *ngFor='let brand of brands' [value]="brand.id">{{brand.brandName}}</option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Colors</label>
-                <select class="form-select" formControlName='colorId'>
-                    <option *ngFor='let color of colors' [value]="color.id">{{color.colorName}}</option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Model Year</span>
-                <input type="number" class="form-control" formControlName='modelYear' placeholder="Enter Car Model Year">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Daily Price</span>
-                <input type="number" class="form-control" formControlName='dailyPrice' placeholder="Enter Daily Price">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='carEditForm.reset()'>Close</button>
-          <button type="button" class="btn btn-primary" (click)='updateCar()'>Save changes</button>
-        </div>
-      </div>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 
-    <!-- Car Add Modal -->
-  <div  class="modal fade" id="carAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Car Informations</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='carEditForm.reset()'></button>
-        </div>
-        <div  class="modal-body">
-          <form [formGroup]='carEditForm'>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Model</span>
-                <input type="text" class="form-control" formControlName='description' placeholder="Enter Car Model">
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Brands</label>
-                <select class="form-select"  formControlName='brandId'>
-                  <option type="number" *ngFor='let brand of brands,' [value]="brand.id">{{brand.brandName}}</option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Colors</label>
-                <select class="form-select" formControlName='colorId'>
-                    <option *ngFor='let color of colors' [value]="color.id">{{color.colorName}}</option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Model Year</span>
-                <input type="number" class="form-control" formControlName='modelYear' placeholder="Enter Car Model Year">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Daily Price</span>
-                <input type="number" class="form-control" formControlName='dailyPrice' placeholder="Enter Daily Price">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='carEditForm.reset()'>Close</button>
-          <button type="button" class="btn btn-primary" (click)='addCar();this.carEditForm.reset()'>Add New Car</button>
-        </div>
+
+<!--  Update Model -->
+<div class="modal fade" id="carUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Car Informations</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)='carEditForm.reset()'></button>
       </div>
-    </div>
-  </div>
-
-    <!-- Delete modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Warning !</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div  class="modal-body">
-               <span>Are you sure you want to delete this Car ?</span>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button (click)='deleteCar()' type="button" data-bs-dismiss="modal" class="btn btn-primary">Delete</button>
-            </div>
+      <div class="modal-body">
+        <form [formGroup]='carEditForm'>
+          <div class="input-group mb-3">
+            <label class="input-group-text" id="inputGroup-sizing-default">Model</label>
+            <input type="text" class="form-control" formControlName='description' placeholder="Enter Car Model">
           </div>
-        </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Brands</label>
+            <select class="form-select" formControlName='brandId'>
+              <option *ngFor='let brand of brands' [value]="brand.id">{{brand.brandName}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Colors</label>
+            <select class="form-select" formControlName='colorId'>
+              <option *ngFor='let color of colors' [value]="color.id">{{color.colorName}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" id="inputGroup-sizing-default">Model Year</label>
+            <input type="number" class="form-control" formControlName='modelYear' placeholder="Enter Car Model Year">
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" id="inputGroup-sizing-default">Findex Score</label>
+            <input type="number" class="form-control" formControlName='findexScore' placeholder="Enter Findex Score">
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" id="inputGroup-sizing-default">Daily Price</label>
+            <input type="number" class="form-control" formControlName='dailyPrice' placeholder="Enter Daily Price">
+          </div>
+        </form>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)='carEditForm.reset()'>Close</button>
+        <button type="button" class="btn btn-primary" (click)='updateCar()'>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Car Add Modal -->
+<div class="modal fade" id="carAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Car Informations</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)='carEditForm.reset()'></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]='carEditForm'>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Model</span>
+            <input type="text" class="form-control" formControlName='description' placeholder="Enter Car Model">
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Brands</label>
+            <select class="form-select" formControlName='brandId'>
+              <option type="number" *ngFor='let brand of brands,' [value]="brand.id">{{brand.brandName}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Colors</label>
+            <select class="form-select" formControlName='colorId'>
+              <option *ngFor='let color of colors' [value]="color.id">{{color.colorName}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Model Year</span>
+            <input type="number" class="form-control" formControlName='modelYear' placeholder="Enter Car Model Year">
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" id="inputGroup-sizing-default">Findex Score</label>
+            <input type="number" class="form-control" formControlName='findexScore' placeholder="Enter Findex Score">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Daily Price</span>
+            <input type="number" class="form-control" formControlName='dailyPrice' placeholder="Enter Daily Price">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)='carEditForm.reset()'>Close</button>
+        <button type="button" class="btn btn-primary" (click)='addCar();this.carEditForm.reset()'>Add New Car</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-
+<!-- Delete modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning !</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span>Are you sure you want to delete this Car ?</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)='deleteCar()' type="button" data-bs-dismiss="modal" class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
